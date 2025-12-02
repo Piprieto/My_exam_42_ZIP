@@ -15,7 +15,7 @@ int	main(int argc, char **argv)
 			if (argv[1][i] == 'a')		// si encuentra una a 
 			{
 			 	write(1, "a", 1);	// la escribe y hacemos que salga
-			 	break;			// del while pq con que haya una es suf
+			 	break;			// del while porque con que haya una es suf
 			}
 			i++;				// aumentamos el contador para evaluar la siguiente posición y buscar la a
 		}
