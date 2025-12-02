@@ -1,72 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mi_union.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: piprieto <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 10:58:56 by piprieto          #+#    #+#             */
-/*   Updated: 2025/02/28 10:59:01 by piprieto         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include <unistd.h>
-
-int	ft_iter(char *str, int i)		//funcion para comprobar si un carácter se repite previamente en un string
-{
-	int j = 0;
-	
-	while(j < i) 				//bucle para recorrer la cadena desde la posición 0 hasta la i
-	{
-		if(str[i] == str[j]) 		//si el carácter se repite devuelve 1
-			return(1);
-		j++;
-	}
-	return(0); 				//si el carácter no aparecía antes, devuelve 0
-}
-
-int	ft_strchr(char *str, char c) 		//func para comprobar si un carácter c aparece en una cadena
-{
-	int i = 0;
-	
-	while(str[i] != '\0')
-	{
-		if(str[i] == c)
-			return (1);		// si aparece devuelve 1
-		else
-			i++;
-	}
-	return (0); 				//si c no aparece en la cadena devuelve 0
-}
-
-int	main(int argc, char **argv)
-{
-	int i = 0;
-	int j = 0;
-	
-	if(argc == 3)											//verificamos que se han pasado dos cadenas para comparar
-	{
-		while(argv[1][i] != '\0')								//analizaremos cada caracter de la primera
-		{
-			if(ft_iter(argv[1], i) == 0)							//escribimos todos los caracteres de la primera cad eliminando los repetidos.
-				write(1, &argv[1][i], 1); 
-			i++;
-		}
-		while(argv[2][j] != '\0')								//recorremos la segunda cadena
-		{
-			if(ft_strchr(argv[1], argv[2][j]) == 1 || (ft_iter(argv[2], j) == 1))		//si el caracter a comparar estaba ya en la primera 
-				j++;									//o se repite en la segunda, seguimos con el siguiente
-			else										//si no, lo escribimos y pasamos al siguiente	
-			{
-				write(1, &argv[2][j], 1);
-				j++;
-			}
-		}
-	}
-	write(1, "\n", 1);
-	return(0);
-}
-
 /*			06_union.txt
 			
 			
@@ -99,3 +30,62 @@ $>
 $>./union "rien" | cat -e
 $
 $>*/
+
+#include <unistd.h>
+
+int	ft_iter(char *str, int i)		//función para comprobar si un carácter se repite previamente en una cadena
+{
+	int j = 0;
+	
+	while(j < i) 					//bucle para recorrer la cadena desde la posición 0 hasta la i
+	{
+		if(str[i] == str[j]) 		//si el carácter se repite devuelve 1
+			return(1);
+		j++;
+	}
+	return(0); 						//si el carácter no aparecía antes, devuelve 0
+}
+
+int	ft_strchr(char *str, char c) 	//func para comprobar si un carácter c aparece en una cadena
+{
+	int i = 0;
+	
+	while(str[i] != '\0')
+	{
+		if(str[i] == c)
+			return (1);				// si aparece devuelve 1
+		else
+			i++;
+	}
+	return (0); 					//si c no aparece en la cadena devuelve 0
+}
+
+int	main(int argc, char **argv)
+{
+	int i = 0;
+	int j = 0;
+	
+	if(argc == 3)							//verificamos que se han pasado dos cadenas para comparar
+	{
+		while(argv[1][i] != '\0')			//analizaremos cada caracter de la primera
+		{
+			if(ft_iter(argv[1], i) == 0)	//escribimos todos los caracteres de la primera cad eliminando los repetidos.
+				write(1, &argv[1][i], 1); 
+			i++;
+		}
+		while(argv[2][j] != '\0')			//recorremos la segunda cadena
+		{
+			if(ft_strchr(argv[1], argv[2][j]) == 1 || (ft_iter(argv[2], j) == 1))		//si el caracter a comparar estaba ya en la primera 
+				j++;																	//o se repite en la segunda, seguimos con el siguiente
+			else																		//si no, lo escribimos y pasamos al siguiente	
+			{
+				write(1, &argv[2][j], 1);
+				j++;
+			}
+		}
+	}
+	write(1, "\n", 1);
+	return(0);
+}
+
+
