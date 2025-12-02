@@ -1,16 +1,59 @@
+/*03_buzzfizz.txt
+			
+Assignment name  : buzzfizz
+Expected files   : buzzfizz.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+Write a program that prints the numbers from 1 to 100, each separated by a
+newline.
+If the number is a multiple of 3, it prints 'fizz' instead.
+If the number is a multiple of 5, it prints 'buzz' instead.
+If the number is both a multiple of 3 and a multiple of 5, it prints 'buzzfizz' instead.
+--------------------------------------------------------------------------------
+Escribe un programa que imprima los números del 1 al 100, cada uno separado por un
+nueva línea.
+Si el número es múltiplo de 3, en su lugar imprime 'buzz'.
+Si el número es múltiplo de 5, en su lugar imprime "fizz".
+Si el número es múltiplo de 3 y múltiplo de 5, en su lugar imprime 'buzzfizz'.
+
+Example:
+$>./buzzfizz
+1
+2
+fizz
+4
+buzz
+fizz
+7
+8
+fizz
+buzz
+11
+fizz
+13
+14
+fizzbuzz
+[...]
+97
+98
+fizz
+buzz
+$> 
+*/
+
 #include <unistd.h>
 
 int ft_print_num (int n)		//función recursiva que pasa un int a un char para poder escribirlo en pantalla
 {
 	char dig[] = "0123456789";
 	
-	if (n > 9)			//si el número tiene más de un dígito
+	if (n > 9)					//si el número tiene más de un dígito
 		ft_print_num (n / 10);	//lo divido y llamo recursivamente a la función para quedarme con el díg de la izda. Ejem: 36/10 = 3,6 me quedo con el 3 y ya es < 9
 	write (1, &dig[n % 10], 1);	//cuando ya es sólo un número al hacer n%10 obtengo el resto, es decir el num de la decha 3%10=0,3 así que escibo en pantalla 3 
 	return(0);
 }
 
-/*Ejemplo de la func anterior par aun número de tres dígitos: ft_print_num(123)
+/*Ejemplo de la func anterior para un número de tres dígitos: ft_print_num(123)
 
 Paso 01 123 mayor de 9 lo divido entre 10 --> 12,3 y llamo de nuevo a la función luego continuara con n = 123.
 Paso 02 12 (12,3 en int es 12) mayor de 9 lo divido entre 10 --> 1,2 y llamo de nuevo a la función luego continuara con n = 12.
@@ -25,15 +68,15 @@ int main (void)
 {
 	int i = 1;
 	
-	while (i <= 100)				//para escribir números del 1 al 100
+	while (i <= 100)					//para escribir números del 1 al 100
 	{
-		if ((i % 15) == 0)			//si es múltiplo de 15
+		if ((i % 15) == 0)				//si es múltiplo de 15
 			write (1, "buzzfizz", 8);	//escribo buzzfizz
 		else if ((i % 5) == 0)			//si múltiplo de 5
 			write (1, "buzz", 4);		//escribo buzz
 		else if ((i % 3) == 0)			//si múltiplo de 3
 			write (1 ,"fizz", 4);		//escribo fizz
-		else					//si no, lla mo a la función que pasa de un int a un char para escribir dígito a dígito el número correspondiente.
+		else							//si no, lla mo a la función que pasa de un int a un char para escribir dígito a dígito el número correspondiente.
 			ft_print_num (i);
 		i++;
 		write (1, "\n", 1);
