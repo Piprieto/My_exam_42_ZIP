@@ -1,7 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-
-
 /*			07_ft_rrange.txt
 			
 Assignment name  : ft_rrange
@@ -25,6 +21,9 @@ Examples:
 - With (-1, 2) you will return an array containing 2, 1, 0 and -1.
 - With (0, 0) you will return an array containing 0.
 - With (0, -3) you will return an array containing -3, -2, -1 and 0.      */
+
+#include <stdlib.h>
+#include <stdio.h>
 
 int	*ft_rrange(int start, int end)
 {
